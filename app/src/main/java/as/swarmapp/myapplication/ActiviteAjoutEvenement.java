@@ -20,8 +20,7 @@ public class ActiviteAjoutEvenement extends ActionBarActivity implements Gestion
     private View.OnClickListener OCLajout = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (eAddresse.getText().length() != 0)
-                MAJaffichage();
+            MAJaffichage(eAddresse.getText().toString());
         }
     };
 
@@ -60,25 +59,35 @@ public class ActiviteAjoutEvenement extends ActionBarActivity implements Gestion
     }
 
     @Override
-    public void MAJaffichage() {
-        new Thread(new Runnable() { public void run() {
-            // le comportement de aFaireEnUI dépend de la réponse de aFaireHorsUI
-            aFaireEnUI( aFaireHorsUI() );
+    public void MAJaffichage(final Object o) {
+        final String lAdresse = (String) o;
+        if (lAdresse.length()!=0){
+            new Thread(new Runnable() {
+                public void run() {
+                    // le comportement de aFaireEnUI dépend de la réponse de aFaireHorsUI
+                    aFaireEnUI(aFaireHorsUI(lAdresse));
 
-        } }).start();
+                }
+            }).start();
+        }
     }
 
     @Override
-    public Object aFaireHorsUI() {
-        DAOEvenement.ajouter(new Evenement(ActiviteAjoutEvenement.this.eAddresse.getText().toString(), "http://localhost.fr"));
-        return null;
+    public Object aFaireHorsUI(final Object o) {
+        String s = (String) o;
+        return DAOEvenement.ajouter(new Evenement(s, "http://"+s+".fr"));
     }
 
     @Override
     public void aFaireEnUI(final Object o) {
-        runOnUiThread(new Runnable() { public void run() {
-            startActivity(new Intent(ActiviteAjoutEvenement.this, MenuConnexion.class));
-            finish();
-        }});
+        if ((long) o == -1)
+            return;
+
+        runOnUiThread(new Runnable() {
+            public void run() {
+                startActivity(new Intent(ActiviteAjoutEvenement.this, MenuConnexion.class));
+                finish();
+            }
+        });
     }
 }

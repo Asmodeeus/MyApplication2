@@ -33,7 +33,7 @@ public class MenuConnexion extends ActionBarActivity implements GestionHorsUI{
             if (lEvenement.compareTo(Const.NV_EVENEMENT)==0){
                 // NV_EVENEMENT a été sélectionné manuellement : l'utilisateur veut créer un nouvel évènement
                 startActivity(new Intent(MenuConnexion.this, ActiviteAjoutEvenement.class));
-                Toast.makeText(MenuConnexion.this, "création d'un nouvel évènement", Toast.LENGTH_SHORT).show();
+                finish();
             }
         }
 
@@ -64,7 +64,7 @@ public class MenuConnexion extends ActionBarActivity implements GestionHorsUI{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chargement_en_cours);
-        MAJaffichage();
+        MAJaffichage(null);
 
         /* /!\ */
         /*
@@ -78,21 +78,21 @@ public class MenuConnexion extends ActionBarActivity implements GestionHorsUI{
     }
 
     @Override
-    public void MAJaffichage() {
+    public void MAJaffichage(final Object o) {
         new Thread(new Runnable() { public void run() {
             /**try {
              Thread.sleep(4000);
              }catch (Exception e){}//*/
 
             // aFaireHorsUI nous dit si l'on doit afficher le layout normal ou passer directement à une autre activité
-            Object params = aFaireHorsUI();
+            Object params = aFaireHorsUI(o);
             aFaireEnUI(params);
 
         } }).start();
     }
 
     @Override
-    public Object aFaireHorsUI(){
+    public Object aFaireHorsUI(final Object o){
 
         List<String> lesEvenements = (DAOEvenement.bddVersListe());
         if (lesEvenements.isEmpty()) {

@@ -29,8 +29,8 @@ public final class DAOEvenement {
     // Requête de création
     public static final String CREATE = "CREATE TABLE " + NAME + " (" +
             KEY         + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            NOM         + " TEXT, " +
-            LIEN        + " TEXT, " +
+            NOM         + " TEXT UNIQUE, " +
+            LIEN        + " TEXT UNIQUE, " +
             DESCRIPTION + " TEXT );";
     public static final String DROP = "DROP TABLE IF EXISTS " + NAME;
 
