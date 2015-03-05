@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="Bb1">Mode évènementiel</string>
+    <string name="Bb2">Mode déconnecté</string>
+    <string name="TVb1">"Suivi / participation à un évènement"</string>
+    <string name="TVb2">Utilisation de données locales</string>
+    <string name="title_activity_activite_circuit_rejeu">ActiviteCircuitRejeu</string>
+    <string name="Sseparateur">séparateur visuel</string>
+    <string name="title_activity_menu_connection">MenuConnexion</string>
+    <string name="Tident">Identifiant</string>
+    <string name="Elogin">Login</string>
+    <string name="Tmdp">Mot de Passe</string>
+    <string name="Epassw">Password</string>
+    <string name="TchEvt">Choix de l\'évènement à suivre</string>
+    <string name="Bconnexion">Connexion</string>
+    <string name="BSpectater">Spectater</string>
+    <string name="title_activity_test_bdd">TestBDD</string>
+
+</resources>
