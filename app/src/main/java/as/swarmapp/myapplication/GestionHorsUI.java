@@ -6,5 +6,5 @@ package as.swarmapp.myapplication;
 public interface GestionHorsUI {
     public void MAJaffichage();
     public Object aFaireHorsUI();
-    public void aFaireEnUI(Object o);
+    public void aFaireEnUI(final Object o);
 }

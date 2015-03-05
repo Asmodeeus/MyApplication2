@@ -20,6 +20,10 @@ public class Evenement {
         this.description = laDescription;
     }
 
+    public Evenement(String leNom, String leLien){
+        this(-1, leNom, leLien, null);
+    }
+
 
     public long getId() {
         return id;

@@ -23,26 +23,20 @@ public class MenuConnexion extends ActionBarActivity implements GestionHorsUI{
     private Button  Bspec;
     private Spinner spinEvenement;
     private String  lEvenement;
-    private boolean initialise = false;
     //*
     private AdapterView.OnItemSelectedListener selectionEvenement = new AdapterView.OnItemSelectedListener(){
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             Toast.makeText(MenuConnexion.this, "onItemSelected", Toast.LENGTH_SHORT).show();
             lEvenement = parent.getItemAtPosition(position).toString();
-            if (lEvenement.compareTo(Const.NV_EVENEMENT)==0){
-                // Ce qui s'affiche est "NV_EVENEMENT", cela peut être dpu à l'initialisation de l'activité où à une sélection manuelle
-                if (initialise){
-                    // NV_EVENEMENT a été sélectionné manuellement : l'utilisateur veut créer un nouvel évènement
-                    // TODO startActivity(new Intent(MenuConnexion.this, AjoutEvenement.class));
-                    Toast.makeText(MenuConnexion.this, "création d'un nouvel évènement", Toast.LENGTH_SHORT).show();
-                }else{
-                    // NV_EVENEMENT a été sélectionné car le spinner s'est affiché
-                    initialise = true;
-                }
 
+            if (lEvenement.compareTo(Const.NV_EVENEMENT)==0){
+                // NV_EVENEMENT a été sélectionné manuellement : l'utilisateur veut créer un nouvel évènement
+                startActivity(new Intent(MenuConnexion.this, ActiviteAjoutEvenement.class));
+                Toast.makeText(MenuConnexion.this, "création d'un nouvel évènement", Toast.LENGTH_SHORT).show();
             }
         }
+
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
             Toast.makeText(MenuConnexion.this, "onNothingSelected", Toast.LENGTH_SHORT).show();
@@ -83,11 +77,12 @@ public class MenuConnexion extends ActionBarActivity implements GestionHorsUI{
 
     }
 
+    @Override
     public void MAJaffichage() {
         new Thread(new Runnable() { public void run() {
-            try {
-                Thread.sleep(4000);
-            }catch (Exception e){}//*/
+            /**try {
+             Thread.sleep(4000);
+             }catch (Exception e){}//*/
 
             // aFaireHorsUI nous dit si l'on doit afficher le layout normal ou passer directement à une autre activité
             Object params = aFaireHorsUI();
@@ -96,6 +91,7 @@ public class MenuConnexion extends ActionBarActivity implements GestionHorsUI{
         } }).start();
     }
 
+    @Override
     public Object aFaireHorsUI(){
 
         List<String> lesEvenements = (DAOEvenement.bddVersListe());
@@ -117,7 +113,7 @@ public class MenuConnexion extends ActionBarActivity implements GestionHorsUI{
 
             if (lAdapteur == null) {
                 // Aucun évènement n'est dans la base de données, on charge l'activité d'ajout d'un évènement
-                //TODO startActivity(new Intent(MenuConnexion.this, AjoutEvenement.class));
+                startActivity(new Intent(MenuConnexion.this, ActiviteAjoutEvenement.class));
                 finish();
 
             }else{

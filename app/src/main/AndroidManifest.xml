@@ -28,6 +28,10 @@
             android:name=".TestBDD"
             android:label="@string/title_activity_test_bdd" >
         </activity>
+        <activity
+            android:name=".ActiviteAjoutEvenement"
+            android:label="@string/title_activity_activite_ajout_evenement" >
+        </activity>
     </application>
 
 </manifest>
