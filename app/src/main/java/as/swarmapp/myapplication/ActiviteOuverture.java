@@ -3,6 +3,7 @@ package as.swarmapp.myapplication;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +25,7 @@ import as.swarmapp.myapplication.BaseDeDonnees.DAOEvenement;
 import as.swarmapp.myapplication.BaseDeDonnees.Utiles;
 
 
-public class ActiviteOuverture extends Activity {
+public class ActiviteOuverture extends ActionBarActivity {
     private static String txtB1 = "Bonjour, je suis le bouton 1.";
     private static String txtB2 = "Moi, c'est le bouton 2 !";
     private Button b1;
@@ -70,7 +71,8 @@ public class ActiviteOuverture extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_activite_ouverture, menu);
+        //getMenuInflater().inflate(R.menu.menu_activite_ouverture, menu);
+        getMenuInflater().inflate(R.menu.menu_generique, menu);
         return true;
     }
 
@@ -82,8 +84,13 @@ public class ActiviteOuverture extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.Iaide:
+                return true;
+
+            case R.id.Iparametres:
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);

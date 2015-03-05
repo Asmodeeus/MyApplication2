@@ -20,5 +20,7 @@
     <string name="title_activity_test_bdd">TestBDD</string>
     <string name="title_activity_activite_ajout_evenement">ActiviteAjoutEvenement</string>
     <string name="Bajout">ajouter l\'évènement</string>
+    <string name="action_aide">Aide</string>
+    <string name="action_parametres">Paramètres</string>
 
 </resources>

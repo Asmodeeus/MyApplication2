@@ -80,10 +80,6 @@ public class MenuConnexion extends ActionBarActivity implements GestionHorsUI{
     @Override
     public void MAJaffichage(final Object o) {
         new Thread(new Runnable() { public void run() {
-            /**try {
-             Thread.sleep(4000);
-             }catch (Exception e){}//*/
-
             // aFaireHorsUI nous dit si l'on doit afficher le layout normal ou passer directement à une autre activité
             Object params = aFaireHorsUI(o);
             aFaireEnUI(params);
@@ -123,9 +119,6 @@ public class MenuConnexion extends ActionBarActivity implements GestionHorsUI{
                 Bspec           = (Button) findViewById(R.id.Bspectater);
                 spinEvenement   = (Spinner) findViewById(R.id.SPchoixEvenement);
 
-                Log.d("B1", Bconn.toString());
-                Log.d("B2", Bspec.toString());
-
                 Bconn.setOnClickListener(OCLBconn);
                 Bspec.setOnClickListener(OCLBspect);
 
@@ -140,7 +133,8 @@ public class MenuConnexion extends ActionBarActivity implements GestionHorsUI{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_menu_connexion, menu);
+        //getMenuInflater().inflate(R.menu.menu_menu_connexion, menu);
+        getMenuInflater().inflate(R.menu.menu_generique, menu);
         return true;
     }
 
@@ -152,8 +146,13 @@ public class MenuConnexion extends ActionBarActivity implements GestionHorsUI{
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case R.id.Iaide:
+                return true;
+
+            case R.id.Iparametres:
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);

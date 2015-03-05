@@ -159,10 +159,13 @@ public final class DAOEvenement {
             String s;
 
             while(c.moveToNext()){
+                s= c.getString(1);
+                /*
                 s = c.getColumnName(0) + " : " + Long.toString(c.getLong(0)) + " | ";
                 s+= c.getColumnName(1) + " : " + c.getString(1) + " | ";
                 s+= c.getColumnName(2) + " : " + c.getString(2) + " | ";
                 s+= c.getColumnName(3) + " : " + c.getString(3) + " | ";
+                //*/
                 aLS.add(s);
             }
 
