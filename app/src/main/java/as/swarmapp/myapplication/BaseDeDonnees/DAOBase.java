@@ -16,6 +16,13 @@ public abstract class DAOBase<T>{
     // Nous sommes à la première version de la base
     protected final static int VERSION = 1;
     protected final static String NOM_A_FORMATER_ = "as.myapplication.%s.db";//"/as.myapplication.%s.db";
+    /*
+    protected static Map<String,DAOBase> maTable_DAO_Event; // TODO : utiliser le pattern singleton pour les DAO.
+
+    De la sorte, DAOPDI aurait une table : { {"evt_1", DAOPDI("evt_1")}, {"evt_2", DAOPDI("evt_2")}, ...}
+    et idem pour chaque descendant de DAOBase
+    ça évitera d'instancier un nouveau DAO à chaque fois
+     */
 
     // Le nom du fichier qui représente ma base
     protected String nom;
@@ -42,8 +49,6 @@ public abstract class DAOBase<T>{
     }
 
     /** On ne peut pas utiliser SQLiteOpenHelper.getWritableDatabase() à cause du fait des nombreuses bases de données 1 par évènement (+ 1 pour tous les évènements)
-     *
-     * @return
      */
     public SQLiteDatabase open() {
         if (!(maBDD == null || !maBDD.isOpen()))
@@ -82,7 +87,7 @@ public abstract class DAOBase<T>{
 
     /** A-t'on vraiment besoin d'accéder à la BDD ?
         Il est préférable d'éviter d'utiliser cette classe. Elle n'est là que pour vérifier qu'on en a effectivement pas besoin.
-    // */
+    //
     @Deprecated
     public SQLiteDatabase getBDD() {
         return maBDD;

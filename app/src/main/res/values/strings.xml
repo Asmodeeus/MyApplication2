@@ -16,7 +16,7 @@
     <string name="Epassw">Password</string>
     <string name="TchEvt">Choix de l\'évènement à suivre</string>
     <string name="Bconnexion">Connexion</string>
-    <string name="BSpectater">Spectater</string>
+    <string name="Bspectater">Spectater</string>
     <string name="title_activity_test_bdd">TestBDD</string>
 
 </resources>

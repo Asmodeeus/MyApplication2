@@ -18,20 +18,34 @@ import java.util.List;
 import as.swarmapp.myapplication.BaseDeDonnees.DAOEvenement;
 
 
-public class MenuConnexion extends ActionBarActivity {
+public class MenuConnexion extends ActionBarActivity implements GestionHorsUI{
     private Button  Bconn;
     private Button  Bspec;
     private Spinner spinEvenement;
     private String  lEvenement;
-
-    private AdapterView.OnItemSelectedListener clicEvenement = new AdapterView.OnItemSelectedListener(){
+    private boolean initialise = false;
+    //*
+    private AdapterView.OnItemSelectedListener selectionEvenement = new AdapterView.OnItemSelectedListener(){
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            Toast.makeText(MenuConnexion.this, "onItemSelected", Toast.LENGTH_SHORT).show();
             lEvenement = parent.getItemAtPosition(position).toString();
+            if (lEvenement.compareTo(Const.NV_EVENEMENT)==0){
+                // Ce qui s'affiche est "NV_EVENEMENT", cela peut être dpu à l'initialisation de l'activité où à une sélection manuelle
+                if (initialise){
+                    // NV_EVENEMENT a été sélectionné manuellement : l'utilisateur veut créer un nouvel évènement
+                    // TODO startActivity(new Intent(MenuConnexion.this, AjoutEvenement.class));
+                    Toast.makeText(MenuConnexion.this, "création d'un nouvel évènement", Toast.LENGTH_SHORT).show();
+                }else{
+                    // NV_EVENEMENT a été sélectionné car le spinner s'est affiché
+                    initialise = true;
+                }
+
+            }
         }
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
-            // Ne fait rien.
+            Toast.makeText(MenuConnexion.this, "onNothingSelected", Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -48,23 +62,15 @@ public class MenuConnexion extends ActionBarActivity {
         @Override
         public void onClick(View v) {
             // Que faire quand on clique sur B2 ?
-            Toast.makeText(MenuConnexion.this, getString(R.string.BSpectater), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MenuConnexion.this, getString(R.string.Bspectater), Toast.LENGTH_SHORT).show();
         }
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activite_menu_connexion);
-        Bconn           = (Button) findViewById(R.id.Bconnexion);
-        Bspec           = (Button) findViewById(R.id.BSpectater);
-        spinEvenement   = (Spinner) findViewById(R.id.SPchoixEvenement);
-
-        Log.d("B1", Bconn.toString());
-        Log.d("B2", Bspec.toString());
-
-        Bconn.setOnClickListener(OCLBconn);
-        Bspec.setOnClickListener(OCLBspect);
+        setContentView(R.layout.chargement_en_cours);
+        MAJaffichage();
 
         /* /!\ */
         /*
@@ -74,18 +80,66 @@ public class MenuConnexion extends ActionBarActivity {
         lesEvenements.add(Const.NV_EVENEMENT);
         //*/
 
-        //*
-        List<String> lesEvenements = (DAOEvenement.bddVersListe());
-        lesEvenements.add(Const.NV_EVENEMENT);
-        //*/
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lesEvenements);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinEvenement.setAdapter(dataAdapter);
-        spinEvenement.setOnItemSelectedListener(clicEvenement);
 
     }
 
+    public void MAJaffichage() {
+        new Thread(new Runnable() { public void run() {
+            try {
+                Thread.sleep(4000);
+            }catch (Exception e){}//*/
+
+            // aFaireHorsUI nous dit si l'on doit afficher le layout normal ou passer directement à une autre activité
+            Object params = aFaireHorsUI();
+            aFaireEnUI(params);
+
+        } }).start();
+    }
+
+    public Object aFaireHorsUI(){
+
+        List<String> lesEvenements = (DAOEvenement.bddVersListe());
+        if (lesEvenements.isEmpty()) {
+            // S'il n'y a aucun évènement dans la BDD, on return null
+            return null;
+
+        }else {
+            lesEvenements.add(Const.NV_EVENEMENT);
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MenuConnexion.this, android.R.layout.simple_spinner_item, lesEvenements);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            return dataAdapter;
+        }
+    }
+
+    public void aFaireEnUI(final Object lAdapteur){
+        runOnUiThread(new Runnable() { public void run() {
+
+            if (lAdapteur == null) {
+                // Aucun évènement n'est dans la base de données, on charge l'activité d'ajout d'un évènement
+                //TODO startActivity(new Intent(MenuConnexion.this, AjoutEvenement.class));
+                finish();
+
+            }else{
+                // Il y a des évènements dans la BDD, l'affichage est celui auquel on s'attend
+                setContentView(R.layout.activite_menu_connexion);
+                Bconn           = (Button) findViewById(R.id.Bconnexion);
+                Bspec           = (Button) findViewById(R.id.Bspectater);
+                spinEvenement   = (Spinner) findViewById(R.id.SPchoixEvenement);
+
+                Log.d("B1", Bconn.toString());
+                Log.d("B2", Bspec.toString());
+
+                Bconn.setOnClickListener(OCLBconn);
+                Bspec.setOnClickListener(OCLBspect);
+
+                spinEvenement.setAdapter((ArrayAdapter<String>) lAdapteur);
+                spinEvenement.setOnItemSelectedListener(selectionEvenement);
+
+            }
+
+        }});
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

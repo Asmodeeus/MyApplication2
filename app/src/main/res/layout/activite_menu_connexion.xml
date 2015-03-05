@@ -6,90 +6,100 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="as.swarmapp.myapplication.MenuConnexion">
 
-    <TextView
-        android:id="@+id/TchoixEvenement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/TchEvt"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Spinner
-        android:id="@+id/SPchoixEvenement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/TchoixEvenement"
-        android:layout_centerHorizontal="true" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView" >
 
-    <TextView
-        android:id="@+id/Tident"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/SPchoixEvenement"
-        android:text="@string/Tident"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
-    <EditText
-        android:id="@+id/Eident"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/Tident"
-        android:ems="10"
-        android:hint="@string/Elogin"
-        android:maxLines="1"
-        android:singleLine="true" >
+            <TextView
+                android:id="@+id/TchoixEvenement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/TchEvt"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <requestFocus />
-    </EditText>
+            <Spinner
+                android:id="@+id/SPchoixEvenement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/TchoixEvenement"
+                android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:id="@+id/Tmdp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/Eident"
-        android:text="@string/Tmdp"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+            <TextView
+                android:id="@+id/Tident"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/SPchoixEvenement"
+                android:text="@string/Tident"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <EditText
-        android:id="@+id/Emdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/Tmdp"
-        android:ems="10"
-        android:hint="@string/Epassw"
-        android:inputType="textPassword" />
+            <EditText
+                android:id="@+id/Eident"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/Tident"
+                android:ems="10"
+                android:hint="@string/Elogin"
+                android:maxLines="1"
+                android:singleLine="true" >
 
+                <requestFocus />
+            </EditText>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Bconnexion"
-        android:id="@+id/Bconnexion"
-        android:layout_below="@+id/Emdp"
-        android:layout_centerHorizontal="true" />
+            <TextView
+                android:id="@+id/Tmdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/Eident"
+                android:text="@string/Tmdp"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <ImageView
-        android:id="@+id/Iseparateur"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/Bconnexion"
-        android:contentDescription="@string/Sseparateur"
-        android:scaleType="fitXY"
-        android:src="@android:drawable/divider_horizontal_textfield" />
+            <EditText
+                android:id="@+id/Emdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/Tmdp"
+                android:ems="10"
+                android:hint="@string/Epassw"
+                android:inputType="textPassword" />
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Bconnexion"
+                android:id="@+id/Bconnexion"
+                android:layout_below="@+id/Emdp"
+                android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/BSpectater"
-        android:id="@+id/BSpectater"
-        android:layout_below="@+id/Iseparateur"
-        android:layout_centerHorizontal="true" />
+            <ImageView
+                android:id="@+id/Iseparateur"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/Bconnexion"
+                android:contentDescription="@string/Sseparateur"
+                android:scaleType="fitXY"
+                android:src="@android:drawable/divider_horizontal_textfield" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Bspectater"
+                android:id="@+id/Bspectater"
+                android:layout_below="@+id/Iseparateur"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

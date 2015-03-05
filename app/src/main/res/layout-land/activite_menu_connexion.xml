@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView2"
+        android:layout_weight="1">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/TchoixEvenement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/TchEvt"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <Spinner
+                android:id="@+id/SPchoixEvenement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/TchoixEvenement"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/Tident"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Tident"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_below="@+id/SPchoixEvenement"
+                android:layout_centerHorizontal="true" />
+
+            <EditText
+                android:id="@+id/Eident"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/Tident"
+                android:ems="10"
+                android:hint="@string/Elogin"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/Tmdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Tmdp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_below="@+id/Eident"
+                android:layout_centerHorizontal="true" />
+
+            <EditText
+                android:id="@+id/Emdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/Tmdp"
+                android:ems="10"
+                android:hint="@string/Epassw"
+                android:inputType="textPassword" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Bconnexion"
+            android:id="@+id/Bconnexion"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:contentDescription="@string/Sseparateur"
+            android:scaleType="fitXY"
+            android:src="@android:drawable/divider_horizontal_textfield"
+            android:layout_below="@+id/Bconnexion"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Bspectater"
+            android:id="@+id/Bspectater"
+            android:layout_below="@+id/Bconnexion"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+</LinearLayout>
